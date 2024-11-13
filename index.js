@@ -26,16 +26,16 @@ const jovenSchema = new mongoose.Schema({
 const Joven = mongoose.model("Joven", jovenSchema);
 
 // rutas
-app.get("/", (req, res) => {
-  res.status(200).sendFile(__dirname + "./index.html");
-});
+// app.get("/", (req, res) => {
+//   res.status(200).sendFile(__dirname + "./index.html");
+// });
 
 app.post("/", async (req, res) => {
   const createdJoven = await Joven.create(req.body);
   res.status(200).json({ msg: "registro exitoso", createdJoven });
 });
 
-app.get("/inscriptos", async (req, res) => {
+app.get("/", async (req, res) => {
   const jovenes = await Joven.find();
   res.status(200).json({ cantidad: jovenes.length, jovenes });
 });
