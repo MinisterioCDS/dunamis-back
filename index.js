@@ -47,7 +47,7 @@ app.get("/", async (req, res) => {
   const { nombre } = req.query;
   const jovenes = await Joven.find().sort({ name:1 });
   if(nombre) {
-    const jovenesFiltrados = jovenes.filter(joven => joven.name.toLowerCase() === nombre.toLowerCase());
+    const jovenesFiltrados = jovenes.filter(joven => joven.name.toLowerCase().includes(nombre.toLowerCase()));
     res.status(200).json(jovenesFiltrados);
   } else {
     res.status(200).json({ cantidad: jovenes.length, jovenes });
