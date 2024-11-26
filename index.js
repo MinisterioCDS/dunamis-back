@@ -1,4 +1,5 @@
 // servidor
+require("dotenv").config();
 const express = require("express");
 // middlewares
 const morgan = require("morgan");
@@ -17,7 +18,7 @@ app.use(express.static("public"));
 // conectar a la base de datos
 
 const dbCon = async () => {
-  await mongoose.connect(`mongodb+srv://ministeriocdsoficial:gcNlAMdOlIfb0tX0@dunamis.i9lrb.mongodb.net/`);
+  await mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@dunamis.i9lrb.mongodb.net/`);
 };
 
 dbCon().then(() => {
